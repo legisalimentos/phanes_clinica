@@ -2522,46 +2522,14 @@ document.addEventListener('keydown', (e) => {
 
 renderCrudTable();
 
-/* =================== SUPABASE UI =================== */
-$('#open-supabase-config').addEventListener('click', () => {
-  const cfg = loadSupabaseConfig() || {};
-  $('#sb-url').value = cfg.url || '';
-  $('#sb-key').value = cfg.key || '';
-  $('#supabase-config-modal').classList.add('open');
-});
-
-$('#supabase-config-modal').addEventListener('click', (e) => {
-  if (e.target.id === 'supabase-config-modal') $('#supabase-config-modal').classList.remove('open');
-});
-
-$('#sb-disconnect').addEventListener('click', () => {
-  if (!confirm('Desconectar do Supabase? O site voltará ao modo local.')) return;
-  saveSupabaseConfig(null);
-  supabaseClient = null;
-  if (realtimeChannel && supabaseClient) supabaseClient.removeChannel(realtimeChannel);
-  realtimeChannel = null;
-  setSyncStatus('offline', 'Desconectado');
-  $('#supabase-config-modal').classList.remove('open');
-  toast('Desconectado do Supabase.');
-});
-
-$('#supabase-config-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const url = $('#sb-url').value.trim();
-  const key = $('#sb-key').value.trim();
-  if (!url || !key) return;
-  saveSupabaseConfig({ url, key });
-  setSyncStatus('connecting', 'Conectando…');
-  const ok = await initSupabase();
-  if (ok) {
-    await syncFromCloud();
-    $('#supabase-config-modal').classList.remove('open');
-    toast('Conectado! Sincronização em tempo real ativa.');
-  } else {
-    setSyncStatus('offline', 'Falha na conexão');
-    toast('Não foi possível conectar. Verifique URL e chave.');
-  }
-});
+/* Inicialização automática do Supabase ao carregar a página */
+(async function bootstrap() {
+  const connected = await initSupabase();
+  if (connected) await syncFromCloud();
+})();
+</script>
+</body>
+</html>
 
 /* Inicialização do Supabase ao carregar a página */
 (async function bootstrap() {
