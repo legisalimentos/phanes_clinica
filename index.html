@@ -2534,16 +2534,8 @@ document.addEventListener('keydown', (e) => {
 
 renderCrudTable();
 
+<script>
 /* Inicialização automática do Supabase ao carregar a página */
-(async function bootstrap() {
-  const connected = await initSupabase();
-  if (connected) await syncFromCloud();
-})();
-</script>
-</body>
-</html>
-
-/* Inicialização do Supabase ao carregar a página */
 (async function bootstrap() {
   const connected = await initSupabase();
   if (connected) await syncFromCloud();
