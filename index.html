@@ -1188,34 +1188,7 @@
   </div>
 </div>
 
-<!-- Modal: Configuração Supabase -->
-<div class="modal-overlay" id="supabase-config-modal">
-  <div class="modal supabase-config-modal">
-    <h3><i class="fa-solid fa-cloud"></i> Conectar ao Supabase</h3>
-    <p>Sincronize o conteúdo do site em tempo real entre todos os visitantes.</p>
-    <div class="sync-banner" style="margin-bottom:18px;">
-      <span><strong>1.</strong> Crie um projeto em <code>supabase.com</code></span>
-      <span><strong>2.</strong> Rode o arquivo <code>setup.supabase.sql</code></span>
-      <span><strong>3.</strong> Cole suas chaves abaixo</span>
-    </div>
-    <form id="supabase-config-form">
-      <div class="form-group">
-        <label>Project URL</label>
-        <input type="text" id="sb-url" required placeholder="https://abcdefgh.supabase.co" />
-        <div class="field-hint">Em <strong>Settings → API</strong> no painel do Supabase.</div>
-      </div>
-      <div class="form-group">
-        <label>Anon Public Key</label>
-        <textarea id="sb-key" required rows="3" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."></textarea>
-        <div class="field-hint">A chave pública (anon). Pode ser exposta no front.</div>
-      </div>
-      <div class="modal-actions">
-        <button type="button" class="admin-btn outline" id="sb-disconnect"><i class="fa-solid fa-plug-circle-xmark"></i> Desconectar</button>
-        <button type="submit" class="admin-btn"><i class="fa-solid fa-plug"></i> Conectar</button>
-      </div>
-    </form>
-  </div>
-</div>
+
 
 <!-- Seção CRUD de Blocos (aparece quando admin) -->
 <section id="admin-crud" class="admin-only" style="background:#f4f1eb; padding: 70px 32px;">
